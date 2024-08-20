@@ -10,50 +10,53 @@
     
     </div>
   </div>
-  <el-menu
-    default-active="2"
-    :collapse-transition="false"
-    :collapse="isCollapse"
-    :popper-class="'custom-menu-popper'"
-    @open="handleOpen"
-    @close="handleClose"
-  >
-  <el-sub-menu index="1">
-      <template #title>
-        <el-icon><Coin /></el-icon>
-        <span>Navigator One</span>
+  <div class="menu-container">
+    <el-menu
+      default-active="2"
+      :collapse-transition="false"
+      :collapse="isCollapse"
+      :popper-class="'custom-menu-popper'"
+      @open="handleOpen"
+      @close="handleClose"
+    >
+      <template v-for="(item , index) in menuList" :key="index">
+        <el-sub-menu :index="item.code"  v-if="item.children && item.children.length !== 0">
+          <template #title>
+            <el-icon><Coin /></el-icon>
+            <span>{{ item.title }}</span>
+          </template>
+          <template v-for="(element ,key) in item.children" :key="key">
+            <el-sub-menu :index="element.code" v-if="element.children && element.children.length !== 0">
+              <template #title><span>{{ element.title }}</span></template>
+              <el-menu-item :index="ele.code" v-for="(ele ,i) in element.children" :key="i">{{ ele.title}}</el-menu-item>
+            </el-sub-menu>
+            <el-menu-item :index="element.code" v-else>{{ element.title}}</el-menu-item>
+          </template>
+        </el-sub-menu>
+        <el-menu-item :index="item.code" v-else>
+          <el-icon><Coin /></el-icon>
+          <template #title>{{ item.title }}</template>
+        </el-menu-item>
+
       </template>
-      <el-menu-item-group>
-        <template #title><span>Group One</span></template>
-        <el-menu-item index="1-1">item one</el-menu-item>
-        <el-menu-item index="1-2">item two</el-menu-item>
-      </el-menu-item-group>
-      <el-menu-item-group title="Group Two">
-        <el-menu-item index="1-3">item three</el-menu-item>
-      </el-menu-item-group>
-      <el-sub-menu index="1-4">
-        <template #title><span>item four</span></template>
-        <el-menu-item index="1-4-1">item one</el-menu-item>
-      </el-sub-menu>
-    </el-sub-menu>
-    <el-menu-item index="2">
-      <el-icon><Coin /></el-icon>
-      <template #title>11111</template>
-    </el-menu-item>
-    <el-menu-item index="3">
-      <el-icon><Coin /></el-icon>
-      <template #title>Navigator Two</template>
-    </el-menu-item>
-    <el-menu-item index="4">
-      <el-icon><Coin /></el-icon>
-      <template #title>Navigator Two</template>
-    </el-menu-item>
-    <el-menu-item index="5">
-      <el-icon><Coin /></el-icon>
-      <template #title>Navigator Two</template>
-    </el-menu-item>
+    
+   
+      <!-- <el-menu-item index="3">
+        <el-icon><Coin /></el-icon>
+        <template #title>Navigator Two</template>
+      </el-menu-item>
+      <el-menu-item index="4">
+        <el-icon><Coin /></el-icon>
+        <template #title>Navigator Two</template>
+      </el-menu-item>
+      <el-menu-item index="5">
+        <el-icon><Coin /></el-icon>
+        <template #title>Navigator Two</template>
+      </el-menu-item> -->
+    
+    </el-menu>
+  </div>
   
-  </el-menu>
   <div class="aside-foot" >
     <el-icon v-if="!isCollapse" size="25"  color="#000" @click="foldMenu"><Fold/></el-icon>
     <el-tooltip
@@ -72,12 +75,47 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref ,reactive} from 'vue'
 import { Fold,Expand,Coin} from '@element-plus/icons-vue';  
 
 const props = defineProps(['changeWidth'])
 const isCollapse = ref(false)
 const isTooltip = ref(true) //因为菜单折叠用了动画过度，折叠时会显示文字提醒，利用disabled属性，延时生效，避免点击时就出现文字提醒
+const menuList = reactive([
+  {
+    title:'菜单一',
+    code:'one',
+    children:[
+      {title:'子菜单一',code:'one1'},
+      {title:'子菜单二',code:'one2'},
+    ]
+  },
+  {
+    title:'菜单二',
+    code:'two',
+   
+  },
+  {
+    title:'菜单三',
+    code:'three',
+  
+  },
+  {
+    title:'菜单四',
+    code:'four',
+   
+  },
+  {
+    title:'菜单五',
+    code:'five',
+   
+    children:[
+      {title:'子菜单一',code:'five1'},
+      {title:'子菜单二',code:'five2',},
+    ]
+  },
+
+])
 
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
@@ -97,7 +135,7 @@ const foldMenu = () => {
 const expandMenu = () => {
   isCollapse.value = false
   isTooltip.value = true
-  props.changeWidth(180)
+  props.changeWidth(160)
 }
 
 </script>
@@ -117,14 +155,19 @@ const expandMenu = () => {
     }
   }
 }
-.el-menu{
-  height:calc(100% - 110px);
-  width:100%;
-  background-color: rgb(181, 252, 228);
+.menu-container{
+  overflow: auto;
+  height:calc(100% - 100px);
+  overflow-x: hidden; /*菜单展开时会闪一下滚动条， 隐藏横向滚动条 */
+  .el-menu{
+    width:100%;
+    .el-menu-item-group__title{
+      padding:0px;
+    }
+  }
 }
-
 .aside-foot{
-  height: 50px;
+  height: 40px;
   display: flex;
   justify-content: space-around;
   align-items: center;
