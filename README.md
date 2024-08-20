@@ -39,3 +39,8 @@
             history.pushState(null, null, document.URL)
          }
       })
+
+## 7.直接使用element-ui plus的菜单折叠组件，折叠时，菜单消失会有明显卡顿，体验不好！
+   1.关闭菜单折叠动画  :collapse-transition="false"；  .el-menu的width宽为100%；
+   2.给菜单父容器元素el-aside，添加过度动画 transition: width 0.1s ease-in-out;
+   3.此时菜单在展开时，会在边菜单栏下面闪一下横向滚动条，我们可以在.el-aside样式加上 overflow-x: hidden，隐藏掉，就不会闪现滚动条了
