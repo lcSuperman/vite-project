@@ -28,17 +28,17 @@
 
 ## 6.阻止浏览器箭头默认退回前进事件
    1.main.ts中设置监听：
-      window.addEventListener('popstate', function() {
+     ` window.addEventListener('popstate', function() {
          history.pushState(null, null, document.URL)
-      })
+      })`
    2.在router的index.ts中
-      const router = createRouter({
+     ` const router = createRouter({
          history: createWebHashHistory(),
          routes,
          scrollBehavior: () => { //添加scrollBehavior函数
             history.pushState(null, null, document.URL)
          }
-      })
+      })`
 
 ## 7.直接使用element-ui plus的菜单折叠组件，折叠时，菜单消失会有明显卡顿，体验不好！
    1.关闭菜单折叠动画  :collapse-transition="false"；  .el-menu的width宽为100%；
@@ -47,13 +47,13 @@
 
 ## 8.elemnt-ui plus的el-icon在菜单中的遍历渲染展示，由于icon是以组件形式HTML标签渲染，所以是个问题；
    1.我们可以利用动态组件的形式取渲染，让icon以HTML标签形式渲染；
-      <el-icon v-if="item.icon">
+     ` <el-icon v-if="item.icon">
          <component :is="iconMapping[item.icon]" />
-      </el-icon>
+      </el-icon>`
    2.单独创建一个公共的el-icon的ts映射文件，因为后端传过来的都是字符串，所以我们要取取对应的值；assets/el-icon.ts
-      import {Coin,DataAnalysis} from '@element-plus/icons-vue'
+     ` import {Coin,DataAnalysis} from '@element-plus/icons-vue'
       export default  {
          "coin": Coin,
          "dataAnalysis": DataAnalysis,
-      }
+      }`
     
