@@ -5,7 +5,9 @@
             <AsideMenueVue :changeWidth="changeAsideWidth" />
           </el-aside>
           <el-container>
-            <el-header></el-header>
+            <el-header>
+              <Header></Header>
+            </el-header>
             <el-main>
               <router-view></router-view>
             </el-main>
@@ -16,9 +18,10 @@
 <script setup lang="ts">
 import { ref} from 'vue'
 import AsideMenueVue from "@/components/asideMenu.vue"
+import Header from '@/components/header.vue'
 
+//左菜单逻辑
 const asideWidth = ref(160)
-
 const changeAsideWidth = (width:number) => {
   asideWidth.value = width
 }
@@ -34,12 +37,13 @@ const changeAsideWidth = (width:number) => {
       height: 100%;
       width: 100%;
       .el-aside{
+        background-color: aquamarine;
         transition: width 0.1s;
         overflow-x: hidden; /*菜单展开时会闪一下滚动条， 隐藏横向滚动条 */
       }
       .el-container{
         //  .el-header{
-        //     background-color: aquamarine;
+        //    padding: 0 10px;
         //  }
          .el-main{
             background-color: rgb(248, 248, 248);

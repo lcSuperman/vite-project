@@ -4,6 +4,7 @@ import router from './router'
 import RouterTab from 'vue-router-tab'
 import 'vue-router-tab/dist/lib/vue-router-tab.css'
 
+
 import './style.css'
 import App from './App.vue'
 
@@ -12,7 +13,9 @@ window.addEventListener('popstate', function() {
 })
 
 const app = createApp(App)
-  app.use(router) //和大多数的 Vue 插件一样，use() 需要在 mount() 之前调用
-  app.use(RouterTab)
-  app.mount('#app')
+
+app.use(router) //和大多数的 Vue 插件一样，use() 需要在 mount() 之前调用
+app.use(RouterTab)
+
+app.mount('#app')
  

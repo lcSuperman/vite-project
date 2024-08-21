@@ -12,7 +12,6 @@
   </div>
   <div class="menu-container">
     <el-menu
-      default-active="2"
       :collapse-transition="false"
       :collapse="isCollapse"
       router
@@ -45,7 +44,6 @@
       </template>
     </el-menu>
   </div>
-  
   <div class="aside-foot" >
     <el-icon v-if="!isCollapse" size="25"  color="#000" @click="foldMenu"><Fold/></el-icon>
     <el-tooltip
@@ -78,7 +76,7 @@ const menuList = reactive([
   {
     title:'菜单一',
     path:'one',
-    icon:'coin',
+    icon:'document',
     children:[
       {title:'子菜单一',path:'/one/one_one'},
       {title:'子菜单二',path:'/one/one_two'},
@@ -87,7 +85,7 @@ const menuList = reactive([
   {
     title:'菜单二',
     path:'/two',
-    icon:'coin',
+    icon:'pieChart',
   },
   {
     title:'菜单三',
@@ -103,6 +101,9 @@ const handleOpen = (key: string, keyPath: string[]) => {
 const handleClose = (key: string, keyPath: string[]) => {
   //console.log(key, keyPath)
 }
+const clickMenu = (a:any,b:any,c:any,d:any) => {
+ // console.log('22222222222222',a,b,c,d)
+}
 
 const foldMenu = () => {
   isCollapse.value = true
@@ -111,17 +112,11 @@ const foldMenu = () => {
   })
   props.changeWidth(65)
 }
-
 const expandMenu = () => {
   isCollapse.value = false
   isTooltip.value = true
   props.changeWidth(160)
 }
-
-const clickMenu = (a:any,b:any,c:any,d:any) => {
- // console.log('22222222222222',a,b,c,d)
-}
-
 const goHome = () => {
   router.push({path:'/home'})
 }
@@ -140,6 +135,7 @@ const goHome = () => {
     align-items: center;
     img{
       cursor: pointer;
+      height: 30px;
     }
     .container span {
       white-space: nowrap; /* 防止文本换行 */
@@ -147,10 +143,12 @@ const goHome = () => {
   }
 }
 .menu-container{
+
   overflow: auto;
   height:calc(100% - 100px);
   overflow-x: hidden; /*菜单展开时会闪一下滚动条， 隐藏横向滚动条 */
   .el-menu{
+    background-color: aquamarine;
     width:100%;
     border-right:none;
     .el-menu-item-group__title{
