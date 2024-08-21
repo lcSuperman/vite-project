@@ -1,9 +1,10 @@
 <template>
     <ul class="header-container">
-      <li></li>
+      <li class="notice">
+     
+      </li>
       <li class="individual-center">
         <el-dropdown placement="bottom-end">
-        
                 <div class="avatar">
                     <span>{{userName}}</span>
                 </div>
@@ -43,6 +44,7 @@
  import { useRouter } from 'vue-router';
  import {SwitchButton,Setting,UserFilled,ChatLineSquare,Warning} from '@element-plus/icons-vue'
  
+ 
  // 获取router实例
  const router = useRouter();
  const userName = ref('')
@@ -59,6 +61,9 @@
  
  <style lang="less" scoped>
  .header-container{
+    .notice{
+        width: 60%;
+    }
     height: 100%;
     width: 100%;
     display: flex;
@@ -72,6 +77,7 @@
             border-radius: 50%;
             display: flex;
             outline:none;
+            cursor: pointer;
             justify-content: space-around;
             align-items: center;
             span{

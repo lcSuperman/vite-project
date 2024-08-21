@@ -9,8 +9,11 @@
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  
+  /* Element Plus使用了CSS变量来实现主题定制，你可以通过覆盖这些变量来改变颜色。 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --el-menu-active-color:#0528f0;
 }
 body{
   margin: 0;
@@ -28,6 +31,7 @@ ul li{
 a{
   text-decoration: none;
 }
+
 
 ::-webkit-scrollbar {
   height: 5px;

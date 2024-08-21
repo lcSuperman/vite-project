@@ -37,14 +37,15 @@ const changeAsideWidth = (width:number) => {
       height: 100%;
       width: 100%;
       .el-aside{
-        background-color: aquamarine;
+        background: linear-gradient(180deg, rgb(150, 253, 219), rgb(17, 181, 247));
         transition: width 0.1s;
         overflow-x: hidden; /*菜单展开时会闪一下滚动条， 隐藏横向滚动条 */
       }
       .el-container{
-        //  .el-header{
-        //    padding: 0 10px;
-        //  }
+         .el-header{
+         
+           background: linear-gradient(90deg, rgb(150, 253, 219) 0%, rgb(47, 195, 253) 50%,rgb(170, 71, 252) 100%);
+         }
          .el-main{
             background-color: rgb(248, 248, 248);
             padding:10px;

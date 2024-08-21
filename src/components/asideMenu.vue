@@ -143,19 +143,28 @@ const goHome = () => {
   }
 }
 .menu-container{
-
   overflow: auto;
   height:calc(100% - 100px);
   overflow-x: hidden; /*菜单展开时会闪一下滚动条， 隐藏横向滚动条 */
-  .el-menu{
-    background-color: aquamarine;
+  /deep/.el-menu{
+    background-color:rgba(0, 0, 0, 0);
     width:100%;
     border-right:none;
+  //  .el-menu-item.is-active{ //修改菜单点击后激活的背景色
+  //     background-color: #f1f1f1;
+  //   }
+  //   .el-sub-menu__title:hover{//修改菜单文字的title的hoiver的背景色
+  //     background-color: #bd1a1a;
+  //   }  
+  //   .el-menu-item:hover{//修改菜单文字的hoiver的背景色
+  //     background-color: #bd1a1a;
+  //   }
     .el-menu-item-group__title{
       padding:0px;
     }
   }
 }
+
 .aside-foot{
   height: 40px;
   display: flex;
