@@ -1,11 +1,11 @@
 # Vue@3.4 + TypeScript@5.2 + Vite@5.3 + vue-router@4
 
-git clone https://github.com/lcSuperman/vite-project.git
-pnpm install
-pnpm run dev
-账号：admin  密码：123qwe
+- git clone https://github.com/lcSuperman/vite-project.git
+- pnpm install
+- pnpm run dev
+- 账号：admin  密码：123qwe
 
-下面是项目常遇到的问题以及解决办法；
+**下面是项目常遇到的问题以及解决办法：**
 
 ## 1. 问题一，路由设置好了模版也有 < router-view >< /router-view >，但是页面初始化显示一下，之后刷新都不显示；
 ```
