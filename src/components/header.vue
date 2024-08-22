@@ -50,7 +50,7 @@
  const userName = ref('')
 
  onMounted(() => {
-    const user = 'admin'
+    const user = JSON.parse(sessionStorage.getItem('userInfo')).userName
     userName.value = user.substring(0,2)
  })
 

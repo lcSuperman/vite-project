@@ -91,10 +91,10 @@ const loginHome = () =>{
     ruleFormRef.value.validate((valid:any) => {
         if(valid){
             loginLoading.value = true
+            sessionStorage.setItem('userInfo',JSON.stringify(loginForm))
             setTimeout(() => {
                 router.push({path:'/home'})
                 loginLoading.value = false
-                sessionStorage.setItem('userInfo',JSON.stringify(loginForm))
             },1000)
         }
     })
@@ -140,7 +140,7 @@ const loginHome = () =>{
         box-sizing: border-box;
         padding: 2% 0;
         img{
-            width: 80px;
+            width: 30%;
         }
     }
   }

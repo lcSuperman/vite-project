@@ -2,11 +2,11 @@
    <ul class="error">
     <li >
         <img src="../../assets/404.png" alt="">
-    </li>
-    <li>
-      <h2>抱歉，您访问的页面出错了</h2>  
-      <p>网页可能已被删除或者不存在</p>
-      <el-button type="primary" @click="goHome">返回首页</el-button>
+        <div class="title">
+            <h2>抱歉，您访问的页面出错了</h2>  
+            <p>网页可能已被删除或者不存在</p>
+            <el-button type="primary" @click="goHome">返回首页</el-button>
+        </div>
     </li>
 </ul>
 </template>
@@ -31,22 +31,28 @@ const goHome = () => {
  width: 100%;
  background-color: @main_content_color;
  display: flex;
+ justify-content: space-around;
  flex-direction: column;
  align-items: center;
  li:first-child{
-    width: 550px;
-    height: 280px;
-    img{
-        height: 100%;
-        width: 100%;
-    }
- }
- li:last-child{
+    width: 60%;
+    height: 70%;
     display: flex;
+    justify-content: space-around;
     flex-direction: column;
     align-items: center;
-    p{
-        margin: 10px 0;
+    margin-bottom: 2%;
+    img{
+        height:70%;
+        width:90%;
+    }
+    .title{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        p{
+            margin: 10px 0;
+        }
     }
  }
 }
