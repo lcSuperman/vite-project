@@ -56,6 +56,7 @@
 
  const loginout = () => {
     router.push({path:'/login'})
+    sessionStorage.removeItem('userInfo')
  }
  </script>
  

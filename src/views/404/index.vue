@@ -24,13 +24,14 @@ const goHome = () => {
 </script>
 
 <style lang="less" scoped>
+@import "../../assets/less/index.less" ;
+
 .error{
  height: 100%;
  width: 100%;
- background-color: #fff;
+ background-color: @main_content_color;
  display: flex;
  flex-direction: column;
-
  align-items: center;
  li:first-child{
     width: 60%;

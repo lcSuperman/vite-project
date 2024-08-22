@@ -49,7 +49,7 @@ const validateName = (rule:any,value:any,callback:any) => {
         // }else{
         //     callback(new Error('至少6-16位字符，可包含字母，数字，下划线，减号'))
         // }
-        if(value == 'admin'){
+        if(value == 'lulingfeng'){
             callback()
         }else{
             callback(new Error('用户名不正确'))
@@ -66,7 +66,7 @@ const validatePass = (rule:any,value:any,callback:any) => {
         // }else{
         //     callback(new Error('至少8-16个字符，包含至少1个大写字母，1个小写字母和1个数字'))
         // }
-        if(value == '123qwe'){
+        if(value == 'QAZwsx123'){
             callback()
         }else{
             callback(new Error('密码不正确'))
@@ -94,6 +94,7 @@ const loginHome = () =>{
             setTimeout(() => {
                 router.push({path:'/home'})
                 loginLoading.value = false
+                sessionStorage.setItem('userInfo',JSON.stringify(loginForm))
             },1000)
         }
     })
