@@ -45,11 +45,10 @@ const changeAsideWidth = (width:number) => {
       }
       .el-container{
          .el-header{
-         
            background: linear-gradient(90deg, rgb(150, 253, 219) 0%, rgb(47, 195, 253) 50%,rgb(170, 71, 252) 100%);
          }
          .el-main{
-            background-color: rgb(240, 240, 240);
+            background-color: rgb(236, 236, 236);
             --el-main-padding:10px;
             position: relative;
             padding-top: 50px;

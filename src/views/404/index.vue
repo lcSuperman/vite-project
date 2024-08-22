@@ -24,7 +24,7 @@ const goHome = () => {
 </script>
 
 <style lang="less" scoped>
-@import "../../assets/less/index.less" ;
+@import "@/assets/less/index.less" ;
 
 .error{
  height: 100%;
@@ -34,8 +34,8 @@ const goHome = () => {
  flex-direction: column;
  align-items: center;
  li:first-child{
-    width: 60%;
-    height: 60%;
+    width: 550px;
+    height: 280px;
     img{
         height: 100%;
         width: 100%;
