@@ -1,8 +1,14 @@
 import { createWebHashHistory, createRouter } from 'vue-router'
+// RouterTab 内置路由
+import { RouterTabRoutes } from 'vue-router-tab'
 
-import Login from '@/views/login.vue'
-import Frame from '@/views/frame.vue'
-import Home from '@/views/home/index.vue'
+// 引入布局框架组件
+const Frame = () => import('@/views/layout/frame.vue')
+
+//动态引入路由组件
+const Login = () => import('@/views/login.vue')
+const Home = () => import('@/views/home/index.vue')
+
 import one from './mone/one'
 import two from './mtwo/two'
 import three from './mthree/three'
@@ -19,6 +25,9 @@ const routes = [
             path:'home',
             name:'home',
             component:Home,
+            meta: {
+               title: '首页' // 页签标题
+            }
          }
       ]
    },
@@ -43,6 +52,23 @@ const routes = [
       children:[
          ...three
       ]
+   },
+   {
+      // 其他路由 404
+      path: '/:catchAll(.*)',
+      redirect: '/404'
+   },
+   {
+   // 其他路由 404
+   path: '/',
+   component:Frame,
+   children:[
+      {
+         path: '404',
+         component:() => import('@/views/404/index.vue'),
+      }
+   ]
+  
    }
 
 ]

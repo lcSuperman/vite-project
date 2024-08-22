@@ -91,12 +91,14 @@
         .title{
             margin-left: 6px;
         }
+        
     }
+   
 
  }
  /deep/.el-dropdown-menu__item--divided{
-    margin: 5px 10px;
- }
+    margin: 5px 10px !important;
+}
 
 
 

@@ -1,0 +1,53 @@
+<template>
+   <ul class="error">
+    <li >
+        <img src="../../assets/404.png" alt="">
+    </li>
+    <li>
+      <h2>抱歉，您访问的页面出错了</h2>  
+      <p>网页可能已被删除或者不存在</p>
+      <el-button type="primary" @click="goHome">返回首页</el-button>
+    </li>
+</ul>
+</template>
+
+<script lang="ts" setup>
+import {useRouter} from 'vue-router'
+
+const router = useRouter()
+
+const goHome = () => {
+    router.push({name:'home'})
+}
+
+
+</script>
+
+<style lang="less" scoped>
+.error{
+ height: 100%;
+ width: 100%;
+ background-color: #fff;
+ display: flex;
+ flex-direction: column;
+
+ align-items: center;
+ li:first-child{
+    width: 60%;
+    height: 60%;
+    img{
+        height: 100%;
+        width: 100%;
+    }
+ }
+ li:last-child{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    p{
+        margin: 10px 0;
+    }
+ }
+}
+
+</style>

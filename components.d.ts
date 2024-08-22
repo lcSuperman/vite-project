@@ -26,9 +26,13 @@ declare module 'vue' {
     ElMenuItemGroup: typeof import('element-plus/es')['ElMenuItemGroup']
     ElPopover: typeof import('element-plus/es')['ElPopover']
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
+    ElTabPane: typeof import('element-plus/es')['ElTabPane']
+    ElTabs: typeof import('element-plus/es')['ElTabs']
     ElTooltip: typeof import('element-plus/es')['ElTooltip']
     Header: typeof import('./src/components/header.vue')['default']
+    Iindex: typeof import('./src/components/router_tab/iindex.vue')['default']
     MarqueeNotice: typeof import('./src/components/marqueeNotice.vue')['default']
+    Router_tab: typeof import('./src/components/router_tab/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

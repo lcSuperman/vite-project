@@ -9,6 +9,7 @@
               <Header></Header>
             </el-header>
             <el-main>
+              <Router_tab></Router_tab>
               <router-view></router-view>
             </el-main>
           </el-container>
@@ -17,8 +18,9 @@
 </template>
 <script setup lang="ts">
 import { ref} from 'vue'
-import AsideMenueVue from "@/components/asideMenu.vue"
-import Header from '@/components/header.vue'
+import AsideMenueVue from "@/components/asideMenu.vue";
+import Header from '@/components/header.vue';
+import Router_tab from '@/components/router_tab/index.vue';
 
 //左菜单逻辑
 const asideWidth = ref(160)
@@ -47,11 +49,14 @@ const changeAsideWidth = (width:number) => {
            background: linear-gradient(90deg, rgb(150, 253, 219) 0%, rgb(47, 195, 253) 50%,rgb(170, 71, 252) 100%);
          }
          .el-main{
-            background-color: rgb(248, 248, 248);
-            padding:10px;
+            background-color: rgb(240, 240, 240);
+            --el-main-padding:10px;
+            position: relative;
+            padding-top: 50px;
          }
       }
     }
+  
         
 }
  

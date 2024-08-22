@@ -20,9 +20,6 @@ importers:
       vue-router:
         specifier: '4'
         version: 4.4.3(vue@3.4.34(typescript@5.5.4))
-      vue-router-tab:
-        specifier: ^1.2.11
-        version: 1.2.11
     devDependencies:
       '@vitejs/plugin-vue':
         specifier: ^5.0.5
@@ -576,9 +573,6 @@ packages:
 
   '@vue/compiler-dom@3.4.34':
     resolution: {integrity: sha512-3PUOTS1h5cskdOJMExCu2TInXuM0j60DRPpSCJDqOCupCfUZCJoyQmKtRmA8EgDNZ5kcEE7vketamRZfrEuVDw==}
-
-  '@vue/compiler-sfc@2.7.16':
-    resolution: {integrity: sha512-KWhJ9k5nXuNtygPU7+t1rX6baZeqOYLEforUPjgNDBnLicfHCoi48H87Q8XyLZOrNNsmhuwKqtpDQWjEFe6Ekg==}
 
   '@vue/compiler-sfc@3.4.34':
     resolution: {integrity: sha512-x6lm0UrM03jjDXTPZgD9Ad8bIVD1ifWNit2EaWQIZB5CULr46+FbLQ5RpK7AXtDHGjx9rmvC7QRCTjsiGkAwRw==}
@@ -1142,11 +1136,6 @@ packages:
     resolution: {integrity: sha512-YF2kKIUzAofPMpfH6hOi2cGnv/HrUlfucspc7pDyvv7kGdqXrfj8SCl/t8owkEgKEuu8ZcRjSOxFxVLqwChZ2Q==}
     engines: {node: ^10 || ^12 || >=14}
 
-  prettier@2.8.8:
-    resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
-
   prr@1.0.1:
     resolution: {integrity: sha512-yPw4Sng1gWghHQWj0B3ZggWUm4qVbPwPFcRG8KyxiU7J2OHFSoEHKS+EZ3fv5l1t9CyCiop6l/ZYeWbrgoQejw==}
 
@@ -1412,14 +1401,6 @@ packages:
       '@vue/composition-api':
         optional: true
 
-  vue-router-tab@1.2.11:
-    resolution: {integrity: sha512-JHOxWoiRAv/AsMLcslURuq0OTg+xjm6RK/4Ofkp30qnS7RxY83gUJ1QhG6GYDkQzRo/9Wg9y7JlW0e0jE5XxSQ==}
-
-  vue-router@3.6.5:
-    resolution: {integrity: sha512-VYXZQLtjuvKxxcshuRAwjHnciqZVoXAjTjcqBTz4rKc8qih9g9pI3hbDjmqXaHdgL3v8pV6P8Z335XvHzESxLQ==}
-    peerDependencies:
-      vue: ^2
-
   vue-router@4.4.3:
     resolution: {integrity: sha512-sv6wmNKx2j3aqJQDMxLFzs/u/mjA9Z5LCgy6BE0f7yFWMjrPLnS/sPNn8ARY/FXw6byV18EFutn5lTO6+UsV5A==}
     peerDependencies:
@@ -1433,10 +1414,6 @@ packages:
     hasBin: true
     peerDependencies:
       typescript: '>=5.0.0'
-
-  vue@2.7.16:
-    resolution: {integrity: sha512-4gCtFXaAA3zYZdTp5s4Hl2sozuySsgz4jy1EnpBHNfpMa9dK1ZCG7viqBPCwXtmgc8nHqUsAu3G4gtmXkkY3Sw==}
-    deprecated: Vue 2 has reached EOL and is no longer actively maintained. See https://v2.vuejs.org/eol/ for more details.
 
   vue@3.4.34:
     resolution: {integrity: sha512-VZze05HWlA3ItreQ/ka7Sx7PoD0/3St8FEiSlSTVgb6l4hL+RjtP2/8g5WQBzZgyf8WG2f+g1bXzC7zggLhAJA==}
@@ -1964,14 +1941,6 @@ snapshots:
     dependencies:
       '@vue/compiler-core': 3.4.34
       '@vue/shared': 3.4.34
-
-  '@vue/compiler-sfc@2.7.16':
-    dependencies:
-      '@babel/parser': 7.25.3
-      postcss: 8.4.40
-      source-map: 0.6.1
-    optionalDependencies:
-      prettier: 2.8.8
 
   '@vue/compiler-sfc@3.4.34':
     dependencies:
@@ -2559,9 +2528,6 @@ snapshots:
       picocolors: 1.0.1
       source-map-js: 1.2.0
 
-  prettier@2.8.8:
-    optional: true
-
   prr@1.0.1:
     optional: true
 
@@ -2636,7 +2602,8 @@ snapshots:
 
   source-map-js@1.2.0: {}
 
-  source-map@0.6.1: {}
+  source-map@0.6.1:
+    optional: true
 
   speakingurl@14.0.1: {}
 
@@ -2824,15 +2791,6 @@ snapshots:
     dependencies:
       vue: 3.4.34(typescript@5.5.4)
 
-  vue-router-tab@1.2.11:
-    dependencies:
-      vue: 2.7.16
-      vue-router: 3.6.5(vue@2.7.16)
-
-  vue-router@3.6.5(vue@2.7.16):
-    dependencies:
-      vue: 2.7.16
-
   vue-router@4.4.3(vue@3.4.34(typescript@5.5.4)):
     dependencies:
       '@vue/devtools-api': 6.6.3
@@ -2849,11 +2807,6 @@ snapshots:
       '@vue/language-core': 2.0.28(typescript@5.5.4)
       semver: 7.6.3
       typescript: 5.5.4
-
-  vue@2.7.16:
-    dependencies:
-      '@vue/compiler-sfc': 2.7.16
-      csstype: 3.1.3
 
   vue@3.4.34(typescript@5.5.4):
     dependencies:
