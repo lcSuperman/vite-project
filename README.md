@@ -6,7 +6,7 @@
 - 账号：admin  密码：123qwe
 
 
-![图片示例](https://github.com/lcSuperman/vite-project/raw/main/src/assets/shouye.png#pic_center =1280x560)
+![项目图例](https://github.com/lcSuperman/vite-project/raw/main/src/assets/shouye.png)
 
 **下面是项目常遇到的问题以及解决办法：**
 
