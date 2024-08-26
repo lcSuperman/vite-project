@@ -56,5 +56,18 @@ export const useRouteTabsStore = defineStore('route_teabs', {
                
             }
         }
+    },
+    // 开启数据缓存
+    persist: {
+        enabled: true,
+        // strategies: [
+        //     {
+        //         key: 'abc',//设置存储的key
+        //         storage: localStorage,//表示存储在localStorage
+        //     }
+        // ]
+        
     }
  })
+
+
