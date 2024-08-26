@@ -1,14 +1,12 @@
 <template>
     <ul class="header-container">
       <li class="notice">
-     
       </li>
       <li class="individual-center">
         <el-dropdown placement="bottom-end">
                 <div class="avatar">
                     <span>{{userName}}</span>
                 </div>
-        
             <template #dropdown>
                 <el-dropdown-menu>
                     <el-dropdown-item>
@@ -34,8 +32,7 @@
                 </el-dropdown-menu>
             </template>
         </el-dropdown>
-    </li>
-     
+      </li>
     </ul>
  </template>
  
@@ -94,9 +91,15 @@
         }
         
     }
+    
    
 
  }
+ .router-tab{
+    width: 100%;
+    height: 40px;
+    background-color: #e41313;
+}
  /deep/.el-dropdown-menu__item--divided{
     margin: 5px 10px !important;
 }

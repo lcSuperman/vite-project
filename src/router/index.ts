@@ -18,11 +18,11 @@ const routes = [
    {path:'/',redirect:'/login'},
    {path:'/login',name:'login',component:Login},
    {
-      path:'/',
+      path:'/home',
       component:Frame,
       children:[
          {
-            path:'home',
+            path:'',
             name:'home',
             component:Home,
             meta: {
@@ -81,13 +81,13 @@ const router = createRouter({
     }
 })
 
-router.beforeEach((to, from, next) => {
-  const loginInfo = JSON.parse(sessionStorage.getItem('userInfo')) 
-   if(to.name == 'login' || (loginInfo &&  loginInfo.userName == 'lulingfeng' && loginInfo.passWord == 'QAZwsx123')){
-      next()
-   }else{
-       next({ name: 'login' })
-   }
- })
+// router.beforeEach((to, from, next) => {
+//   const loginInfo = JSON.parse(sessionStorage.getItem('userInfo')) 
+//    if(to.name == 'login' || (loginInfo &&  loginInfo.userName == 'lulingfeng' && loginInfo.passWord == 'QAZwsx123')){
+//       next()
+//    }else{
+//        next({ name: 'login' })
+//    }
+//  })
 
 export default router
