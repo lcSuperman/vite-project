@@ -53,25 +53,25 @@ const isShowBtns = ref(false)
 
 const  getShowOrHide = () => {
   ulWidth.value = 0
-  console.log('3---------------',indivRef.value.children)
   const arr = [...indivRef.value.children]
 
   arr.forEach((item:any) => {
     ulWidth.value += item.offsetWidth
   })
-  console.log('3333333333',outdivRef.value.offsetWidth,ulWidth.value)
   if(outdivRef.value.offsetWidth - ulWidth.value > 0){
     isShowBtns.value = false
   }else{
     isShowBtns.value = true
   }
 }
+
 watch(routeTabs, async (newValue, oldValue) => {
   await nextTick()
   await getShowOrHide() //如果要在watch中调用事件方法，要把watch写在方法之后因为const和let定义的书型盒方法不能提升
 },
 { deep: true},
 )
+
 const clickScroll = (swidth:number) => {
   try{
     if (outdivRef.value) { 
@@ -79,14 +79,13 @@ const clickScroll = (swidth:number) => {
       const scrollWidth = swidth;
       // 获取当前滚动位置
       let scrollLeft = outdivRef.value.scrollLeft;
+      //滚动到设置的滚动位置
       outdivRef.value.scrollTo({
         left: (scrollLeft + scrollWidth) % outdivRef.value.scrollWidth,
         behavior: 'smooth'
       });
     }
-
   }catch{}
-
 }
 
 const removeTab = async (index:number) =>{

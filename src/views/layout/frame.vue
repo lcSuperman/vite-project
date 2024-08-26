@@ -48,7 +48,7 @@ const changeAsideWidth = (width:number) => {
            background: linear-gradient(90deg, rgb(150, 253, 219) 0%, rgb(74, 201, 252) 50%,rgb(188, 108, 253) 100%);
          }
          .el-main{
-            background-color: rgb(236, 236, 236);
+            background-color: rgb(233, 233, 233);
             --el-main-padding:10px;
             position: relative;
             padding-top: 50px;
