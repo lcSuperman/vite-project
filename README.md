@@ -1,4 +1,4 @@
-# Vue@3.4 + TypeScript@5.2 + Vite@5.3 + vue-router@4
+# Vue@3.4 + TypeScript@5.2 + Vite@5.3 + vue-router@4 + pinia@2.2
 
 - git clone https://github.com/lcSuperman/vite-project.git
 - pnpm install
@@ -82,5 +82,57 @@
             "dataAnalysis": DataAnalysis,
          }
    ```
+
+## 9. element-ui plus中使用el-dropdown下拉菜单点击和hover自定义的触发目标，会出现黑框
    
+   ```
+      <el-dropdown placement="bottom-end">
+            <div class="avatar">
+               <span>{{userName}}</span>
+            </div>
+            <template #dropdown>
+                 ...
+            </template>
+        </el-dropdown>
+
+        ...
+        .avatar{
+          outline:none;
+        }
+
+   ```
+## 10.隐藏掉页签的滚动条，通过按钮去滚动到指定位置，来实现按钮滚动页签
+  ```
+     const clickScroll = (swidth:number) => {
+         try{
+            if (outdivRef.value) { 
+               // 滚动固定宽度的像素值，例如100px
+               const scrollWidth = swidth;
+               // 获取当前滚动位置
+               let scrollLeft = outdivRef.value.scrollLeft;
+               //滚动到设置的滚动位置
+               outdivRef.value.scrollTo({
+               left: (scrollLeft + scrollWidth) % outdivRef.value.scrollWidth,
+               behavior: 'smooth'
+               });
+            }
+         }catch{}
+      }
+  ```
+## 11. 在组合api语法糖< script setup lang="ts" >中去写在watch监听逻辑中去使用事件方法，不起效果；
+   那是因为在setup语法糖的< script >内就是js同步执行顺序，如果定义事件方法用的是es6语法中的let或const,并且写在watch()函数之后，事件方法的变量不会提醒，所以获取不到方法；
+   如果要用let或const定义事件方法，要写在watch()函数之前，或者用var去定义；
+   
+
+## 12.往页签routeTabs数组中添加一个属性对象，然后监听routeTabs，再通过ref去获取DOM时，但是获取不到刚才添加上去的
+   原因就是vue是异步的，刚添加进去的属性对象，还没有被页面挂载完毕，watch就已经监听到routeTabs的变化就直接执行啦，获取的是ref为xxx的之前的DOM元素；
+   可以通过nextTick()函数，等把页面加载完成后再去执行后面的逻辑；
+   ```
+     watch(routeTabs, async (newValue, oldValue) => {
+         await nextTick()
+         await getShowOrHide() //如果要在watch中调用事件方法，要把watch写在方法之后因为const和let定义的书型盒方法不能提升
+         },
+         { deep: true},
+      )
+   ```
     
