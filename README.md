@@ -3,7 +3,7 @@
 - git clone https://github.com/lcSuperman/vite-project.git
 - pnpm install
 - pnpm run dev
-- 账号：admin  密码：123qwe
+- 账号：lulingfeng  密码：QAZwsx123
 
 
 ![项目图例](https://github.com/lcSuperman/vite-project/raw/main/src/assets/shouye.png)
