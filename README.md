@@ -5,6 +5,9 @@
 - pnpm run dev
 - 账号：admin  密码：123qwe
 
+
+![图片示例](https://github.com/lcSuperman/vite-project/raw/main/src/assets/shouye.png#pic_center =1280x560)
+
 **下面是项目常遇到的问题以及解决办法：**
 
 ## 1. 问题一，路由设置好了模版也有 < router-view >< /router-view >，但是页面初始化显示一下，之后刷新都不显示；
