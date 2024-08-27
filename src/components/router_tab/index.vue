@@ -6,8 +6,8 @@
      
      <div class="tabs" ref="outdivRef">
         <ul ref="indivRef">
-          <li  :class="{activeLi:activeIndex == '-1',onlyHome:routeTabs.length == 0}"  @click="clikHome"><el-icon><HomeFilled /></el-icon>首页</li>
-          <li v-for="(item ,index) in routeTabs" :key="index"  :class="{activeLi:index == activeIndex}">
+          <li :class="{activeLi:activeIndex == '-1',onlyHome:routeTabs.length == 0}"  @click="clikHome"><el-icon><HomeFilled /></el-icon>首页</li>
+          <li v-for="(item ,index) in routeTabs" :key="index"  :class="{activeLi:index == activeIndex}" :id="item.name">
             <div class="tabTitle" :class="{active:index == activeIndex}" @click="clikRouterRab(item ,index)">
               <div class="title-container">{{item.title}}</div>
               <el-icon  @click.stop="removeTab(index)"><Close /></el-icon>
@@ -49,12 +49,11 @@ const clikHome = (title:string) => {
 const  outdivRef = ref()
 const indivRef = ref()
 const ulWidth = ref(0)
-const isShowBtns = ref(false)
+const isShowBtns = ref(null)
 
 const  getShowOrHide = () => {
   ulWidth.value = 0
   const arr = [...indivRef.value.children]
-
   arr.forEach((item:any) => {
     ulWidth.value += item.offsetWidth
   })
@@ -62,15 +61,31 @@ const  getShowOrHide = () => {
     isShowBtns.value = false
   }else{
     isShowBtns.value = true
+    if(activeIndex.value == routeTabs.value.length - 1){
+      //滚动页签，让点击页签可以看到
+    }
   }
 }
-
 watch(routeTabs, async (newValue, oldValue) => {
   await nextTick()
   await getShowOrHide() //如果要在watch中调用事件方法，要把watch写在方法之后因为const和let定义的书型盒方法不能提升
 },
-{ deep: true},
+{deep: true,immediate: true},
 )
+const scrollToTab = (tabId:string) => {
+  const element = document.getElementById(tabId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
+
+watch(activeIndex,(newVal)=>{
+  if(newVal !== -1){
+    const activeId = routeTabs.value[newVal].name
+    scrollToTab(activeId)
+  }
+  
+},{immediate: true})
 
 const clickScroll = (swidth:number) => {
   try{

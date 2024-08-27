@@ -11,9 +11,7 @@ export const useRouteTabsStore = defineStore('route_teabs', {
         }
 
     },
-    getters:{
-
-    },
+    getters:{},
     actions:{
         addTabs(obj){
            this.activePath = obj.path
@@ -32,10 +30,7 @@ export const useRouteTabsStore = defineStore('route_teabs', {
         changeActiveIndex(index){
           this.activeIndex = index
           if(index !== -1){
-              const filterArr = this.routeTabs.filter((item, key) => {
-                return  key == this.activeIndex
-              })
-              this.activePath = filterArr[0].path
+            this.activePath =  this.routeTabs[this.activeIndex].path
           }else{
              this.activePath = '/home'
           }
