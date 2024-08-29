@@ -1,6 +1,6 @@
 <template>
     <div class="common-layout">
-        <el-container>
+        <el-container @mousedown="test">
           <el-aside :style="{width:asideWidth+'px'}">
             <AsideMenueVue :changeWidth="changeAsideWidth" />
           </el-aside>
@@ -21,11 +21,30 @@ import { ref} from 'vue'
 import AsideMenueVue from "@/components/asideMenu.vue";
 import Header from '@/components/header.vue';
 import Router_tab from '@/components/router_tab/index.vue';
+import {useTabsModal} from '@/store/index.ts'
+import { storeToRefs } from 'pinia'
+
+const is_tabs_modal = useTabsModal()
+let {isShowModal} = storeToRefs(is_tabs_modal)
 
 //左菜单逻辑
 const asideWidth = ref(160)
 const changeAsideWidth = (width:number) => {
   asideWidth.value = width
+}
+
+//监听全部按钮事件
+const test = (e:any) => {
+   if(e.button == 2) {
+     if(e.target.className == 'activeLi' || e.target.className == 'title-container'){
+      //点击tabs菜单的操作
+     }else{
+      isShowModal.value = false
+     }
+   }else{
+     isShowModal.value = false
+   }
+
 }
 
   
@@ -57,6 +76,12 @@ const changeAsideWidth = (width:number) => {
     }
   
         
+}
+.tabsModal{
+  width: 100px;
+  height: 200px;
+  background-color: aqua;
+  position: fixed;
 }
  
 </style>

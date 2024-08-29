@@ -6,7 +6,7 @@ export const useRouteTabsStore = defineStore('route_teabs', {
         return {
             routeTabs:[],
             pathArr:[],
-            activePath:'',
+            activePath:'/home',
             activeIndex:'-1',
         }
 
@@ -64,5 +64,18 @@ export const useRouteTabsStore = defineStore('route_teabs', {
         
     }
  })
+
+export const useTabsModal = defineStore('is_tabs_modal',{
+    state:()=>{
+        return {
+            isShowModal:false,
+            leftWidth:0,
+            topWidth:0
+        }
+    },
+    persist: {
+        enabled: true,
+    }
+})
 
 

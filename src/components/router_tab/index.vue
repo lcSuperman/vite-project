@@ -7,7 +7,7 @@
      <div class="tabs" ref="outdivRef">
         <ul ref="indivRef">
           <li :class="{activeLi:activeIndex == '-1',onlyHome:routeTabs.length == 0}"  @click="clikHome"><el-icon><HomeFilled /></el-icon>首页</li>
-          <li v-for="(item ,index) in routeTabs" :key="index"  :class="{activeLi:index == activeIndex}" :id="item.name">
+          <li  v-for="(item ,index) in routeTabs" :key="index"  :class="{activeLi:index == activeIndex}" :id="item.name" @contextmenu.prevent="onRightClick">
             <div class="tabTitle" :class="{active:index == activeIndex}" @click="clikRouterRab(item ,index)">
               <div class="title-container">{{item.title}}</div>
               <el-icon  @click.stop="removeTab(index)"><Close /></el-icon>
@@ -17,23 +17,56 @@
      </div>
        <!-- <el-icon :size="25" @click="clickScroll(-200)"><CaretLeft /></el-icon> -->
       <el-icon v-if="isShowBtns" :size="25" color="#73767a"  @click="clickScroll(200)"><CaretRight /></el-icon>
-  </div> 
+  </div>
+  <div class="tabsModal" ref="modalRef" v-show="isShowModal" :style="{top:topWidth+'px',left:leftWidth +'px'}">
+     <ul>
+      <li>刷新</li>
+      <li>关闭</li>
+      <li>关闭其他</li>
+      <li>全部关闭</li>
+      
+     </ul>
+  </div>
 </template>
 
 <script lang="ts" setup>
 import {ref,reactive,watch,nextTick,onMounted} from 'vue'
 import {Close,CaretLeft,CaretRight,HomeFilled,ArrowDownBold} from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router';
-import {useRouteTabsStore} from '@/store/index.ts'
+import {useRouteTabsStore,useTabsModal} from '@/store/index.ts'
 import { storeToRefs } from 'pinia'
 
 // 获取router实例
 const router = useRouter();
 const route_teabs = useRouteTabsStore()
+const is_tabs_modal = useTabsModal()
 let {routeTabs,activePath,activeIndex} = storeToRefs(route_teabs)
+let {isShowModal,leftWidth,topWidth} = storeToRefs(is_tabs_modal)
 
+onMounted(() => {
+  isShowModal.value = false
+})
 
-//点击页签改变触发样式的逻辑
+const modalRef = ref(null)
+
+const onRightClick =(e:any) => {
+  isShowModal.value = false
+  // 获取浏览器窗口的可视区域宽度（包括滚动条等）
+  var clientWidth = document.documentElement.clientWidth;
+  nextTick(() => {
+    isShowModal.value = true
+    const modalWidth = modalRef.value.offsetWidth !== 0 ? modalRef.value.offsetWidth : '90'
+    if(clientWidth - e.clientX < modalWidth){
+      leftWidth.value = e.clientX - modalWidth
+    }else{
+      leftWidth.value = e.clientX
+    }
+    topWidth.value = e.clientY
+  });
+
+}
+
+////点击页签改变触发样式的逻辑
 const clikRouterRab = async (item:object,index:number) =>{
    await route_teabs.changeActiveIndex(index)
    await router.push({path:activePath.value})
@@ -45,7 +78,7 @@ const clikHome = (title:string) => {
 
 
 
-//页签较长，会显示按钮和点击按钮滑动页签的逻辑
+////页签较长，会显示按钮和点击按钮滑动页签的逻辑
 const  outdivRef = ref()
 const indivRef = ref()
 const ulWidth = ref(0)
@@ -80,7 +113,7 @@ const scrollToTab = (tabId:string) => {
 };
 
 watch(activeIndex,(newVal)=>{
-  if(newVal !== -1){
+  if(newVal !== -1 && isShowBtns.value){
     const activeId = routeTabs.value[newVal].name
     scrollToTab(activeId)
   }
@@ -102,11 +135,14 @@ const clickScroll = (swidth:number) => {
     }
   }catch{}
 }
-
 const removeTab = async (index:number) =>{
   await route_teabs.removeTabs(index)
   await router.push({path:activePath.value})
 }
+
+
+ 
+
 
 </script>
 
@@ -189,6 +225,13 @@ const removeTab = async (index:number) =>{
               transition: all  .01s ease-in-out;
           }
           }
+          .modal{
+            position: absolute;
+            bottom: 0;
+            height: 200px;
+            width: 100px;
+            background-color:pink;
+          }
         
         }
         li:first-child{
@@ -235,6 +278,20 @@ const removeTab = async (index:number) =>{
       width: 0px;
       overflow-y: hidden;
     }   
+}
+.tabsModal{
+  position: fixed;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, .2);
+  padding:0 15px;
+  ul{
+    li{
+      padding: 4px 0;
+      font-size: 14px;
+      color: #161616;
+    }
+  }
 }
 
 </style>
