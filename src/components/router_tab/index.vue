@@ -5,10 +5,10 @@
       <!-- <el-icon :size="25" @click="clickScroll(200)"><CaretRight /></el-icon> -->
      
      <div class="tabs" ref="outdivRef">
-        <ul ref="indivRef">
-          <li :class="{activeLi:activeIndex == '-1',onlyHome:routeTabs.length == 0}"  @click="clikHome"><el-icon><HomeFilled /></el-icon>首页</li>
-          <li  v-for="(item ,index) in routeTabs" :key="index"  :class="{activeLi:index == activeIndex}" :id="item.name" @contextmenu.prevent="onRightClick">
-            <div class="tabTitle" :class="{active:index == activeIndex}" @click="clikRouterRab(item ,index)">
+        <div class="home" :class="{activeLi:activePath == '/home',onlyHome:routeTabs.length == 0}"  @click="clikHome"><el-icon><HomeFilled /></el-icon>首页</div>
+        <ul ref="el">
+          <li  v-for="(item ,index) in routeTabs" :key="item.path"  :class="{activeLi:item.path == activePath}" :id="item.name" @contextmenu.prevent="onRightClick">
+            <div class="tabTitle" :class="{active:item.path == activePath}" @click="clikRouterRab(item ,index)">
               <div class="title-container">{{item.title}}</div>
               <el-icon  @click.stop="clickRemoveTab(index)"><Close /></el-icon>
             </div>
@@ -34,6 +34,7 @@ import {Close,CaretLeft,CaretRight,HomeFilled,ArrowDownBold} from '@element-plus
 import { useRouter } from 'vue-router';
 import {useRouteTabsStore,useTabsModal} from '@/store/index.ts'
 import { storeToRefs } from 'pinia'
+import { useDraggable } from 'vue-draggable-plus'
 
 // 获取router实例
 const router = useRouter();
@@ -46,6 +47,8 @@ let {isShowModal,leftWidth,topWidth,clickIndexL} = storeToRefs(is_tabs_modal)
 onMounted(() => {
   isShowModal.value = false
 })
+
+console.log('3333333333339999',routeTabs)
 
 const modalRef = ref(null)
 const onRightClick =(e:any) => {
@@ -86,13 +89,13 @@ const clikHome = (title:string) => {
 
 ////页签较长，会显示按钮和点击按钮滑动页签的逻辑
 const  outdivRef = ref()
-const indivRef = ref()
+const el = ref()
 const ulWidth = ref(0)
 const isShowBtns = ref(null)
 
 const  getShowOrHide = () => {
   ulWidth.value = 0
-  const arr = [...indivRef.value.children]
+  const arr = [...el.value.children]
   arr.forEach((item:any) => {
     ulWidth.value += item.offsetWidth
   })
@@ -180,6 +183,19 @@ const refresh = () => {
 }
 
 
+useDraggable(el, routeTabs, {
+  animation: 150,
+  ghostClass: 'ghost',
+  onStart() {
+    console.log('start')
+  },
+  onUpdate() {
+    console.log('update')
+  }
+})
+
+
+
  
 
 
@@ -204,6 +220,29 @@ const refresh = () => {
       width: 100%;
       overflow-x: auto;
       overflow-y: hidden;
+      display: flex;
+      align-items: center;
+      .home{
+          height: 35px;
+          border-top: 1px solid #bfbfbf;
+          border-left: 1px solid #bfbfbf;
+          border-bottom: 1px solid #bfbfbf;
+          padding:0 8px;
+          display: flex;
+          cursor: pointer;
+          align-items: center;
+          font-size: 14px;
+          border-radius:4px 0 0 0 ;
+      }
+      .home:hover{
+        color:@router_tab_hover_color;
+      }
+      .activeLi{
+        color:@router_tab_active_color;
+      }
+      .onlyHome{
+        border-radius:4px 4px 0 0 !important;
+      }
       ul{
         height: 100%;
         display: flex;
@@ -273,18 +312,13 @@ const refresh = () => {
           }
         
         }
-        li:first-child{
-          font-size: 14px;
-          border-radius:4px 0 0 0 ;
-        }
+      
         li:last-child{
           border-right: 1px solid #bfbfbf;
           border-radius:0 4px 0 0 ;
           margin-right: 10px;
         }
-        .onlyHome{
-          border-radius:4px 4px 0 0 !important;
-        }
+        
         li:hover{
           color:@router_tab_hover_color;
           .tabTitle{
