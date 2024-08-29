@@ -26,7 +26,8 @@ const routes = [
             name:'home',
             component:Home,
             meta: {
-               title: '首页' // 页签标题
+               title: '首页', // 页签标题
+               keepAlive:false,
             }
          }
       ]

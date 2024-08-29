@@ -48,9 +48,8 @@ export const useRouteTabsStore = defineStore('route_teabs', {
                 if(index < this.activeIndex){
                     this.activeIndex = this.activeIndex - 1
                 }
-               
             }
-        }
+        },
     },
     // 开启数据缓存
     persist: {
@@ -70,7 +69,8 @@ export const useTabsModal = defineStore('is_tabs_modal',{
         return {
             isShowModal:false,
             leftWidth:0,
-            topWidth:0
+            topWidth:0,
+            clickIndexL:0,
         }
     },
     persist: {

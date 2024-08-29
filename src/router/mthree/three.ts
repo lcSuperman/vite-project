@@ -7,6 +7,7 @@ export default [
         component:three,
         meta: {
             title: '子菜单三',
+            keepAlive:false,
         }
     }
 ]

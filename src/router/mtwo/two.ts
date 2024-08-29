@@ -7,6 +7,7 @@ export default [
         component:two,
         meta: {
             title: '菜单二',
+            keepAlive:false,
         }
     }
 ]

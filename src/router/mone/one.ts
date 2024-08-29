@@ -9,6 +9,7 @@ export default [
         component:one_one,
         meta: {
             title: '子菜单一', // 页签标题
+            keepAlive:false,
         }
     },
     {
@@ -17,6 +18,7 @@ export default [
         component:one_two,
         meta: {
             title: '子菜单二',
+            keepAlive:false,
         }
     }
 ]

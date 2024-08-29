@@ -10,7 +10,7 @@
           <li  v-for="(item ,index) in routeTabs" :key="index"  :class="{activeLi:index == activeIndex}" :id="item.name" @contextmenu.prevent="onRightClick">
             <div class="tabTitle" :class="{active:index == activeIndex}" @click="clikRouterRab(item ,index)">
               <div class="title-container">{{item.title}}</div>
-              <el-icon  @click.stop="removeTab(index)"><Close /></el-icon>
+              <el-icon  @click.stop="clickRemoveTab(index)"><Close /></el-icon>
             </div>
           </li>
         </ul>
@@ -20,17 +20,16 @@
   </div>
   <div class="tabsModal" ref="modalRef" v-show="isShowModal" :style="{top:topWidth+'px',left:leftWidth +'px'}">
      <ul>
-      <li>刷新</li>
-      <li>关闭</li>
-      <li>关闭其他</li>
-      <li>全部关闭</li>
-      
+      <li class="tabsEvent" @click="refresh" v-if="activeIndex == clickIndexL">刷新</li>
+      <li class="tabsEvent" @click="closeTab">关闭</li>
+      <li class="tabsEvent" @click="closeOtherTabs">关闭其他</li>
+      <li class="tabsEvent" @click="closeAllTabs">全部关闭</li>
      </ul>
   </div>
 </template>
 
 <script lang="ts" setup>
-import {ref,reactive,watch,nextTick,onMounted} from 'vue'
+import {ref,reactive,watch,nextTick,onMounted,inject} from 'vue'
 import {Close,CaretLeft,CaretRight,HomeFilled,ArrowDownBold} from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router';
 import {useRouteTabsStore,useTabsModal} from '@/store/index.ts'
@@ -41,18 +40,25 @@ const router = useRouter();
 const route_teabs = useRouteTabsStore()
 const is_tabs_modal = useTabsModal()
 let {routeTabs,activePath,activeIndex} = storeToRefs(route_teabs)
-let {isShowModal,leftWidth,topWidth} = storeToRefs(is_tabs_modal)
+const {removeTabs,removeAllTabs} = route_teabs
+let {isShowModal,leftWidth,topWidth,clickIndexL} = storeToRefs(is_tabs_modal)
 
 onMounted(() => {
   isShowModal.value = false
 })
 
 const modalRef = ref(null)
-
 const onRightClick =(e:any) => {
   isShowModal.value = false
   // 获取浏览器窗口的可视区域宽度（包括滚动条等）
   var clientWidth = document.documentElement.clientWidth;
+  if(e.target.textContent !== '首页'){
+    routeTabs.value.forEach( (item:object ,index:number) => {
+          if(e.target.textContent == item.title){
+            clickIndexL.value = index
+          }
+    })
+  }
   nextTick(() => {
     isShowModal.value = true
     const modalWidth = modalRef.value.offsetWidth !== 0 ? modalRef.value.offsetWidth : '90'
@@ -96,12 +102,14 @@ const  getShowOrHide = () => {
     isShowBtns.value = true
     if(activeIndex.value == routeTabs.value.length - 1){
       //滚动页签，让点击页签可以看到
+      clickScroll(200)
     }
   }
 }
-watch(routeTabs, async (newValue, oldValue) => {
-  await nextTick()
-  await getShowOrHide() //如果要在watch中调用事件方法，要把watch写在方法之后因为const和let定义的书型盒方法不能提升
+watch(routeTabs, (newValue, oldValue) => {
+  nextTick( () => {
+    getShowOrHide() //如果要在watch中调用事件方法，要把watch写在方法之后因为const和let定义的书型盒方法不能提升
+  })
 },
 {deep: true,immediate: true},
 )
@@ -135,9 +143,40 @@ const clickScroll = (swidth:number) => {
     }
   }catch{}
 }
-const removeTab = async (index:number) =>{
-  await route_teabs.removeTabs(index)
+const clickRemoveTab = async (index:number) =>{
+  await removeTabs(index)
   await router.push({path:activePath.value})
+}
+
+
+////页签右键菜单事件
+const reloadFun = inject('reloadFun')
+const closeTab = async() => {
+  await removeTabs(clickIndexL.value);
+  router.push({path:activePath.value})
+  isShowModal.value = false
+}
+const closeAllTabs = async() => {
+  route_teabs.$reset()
+  isShowBtns.value = false
+  await router.push({path:activePath.value})
+  isShowModal.value = false
+}
+const closeOtherTabs = () => {
+  const lastPth =   routeTabs.value[clickIndexL.value]
+  route_teabs.$patch({
+    routeTabs:[{...lastPth}],
+    pathArr:[lastPth.path],
+    activePath:lastPth.path,
+    activeIndex:0,
+  })
+  router.push({path:activePath.value})
+  isShowModal.value = false
+}
+
+const refresh = () => {
+  return reloadFun()
+  
 }
 
 
@@ -284,12 +323,17 @@ const removeTab = async (index:number) =>{
   border-radius: 5px;
   background-color: #f8f8f8;
   box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, .2);
-  padding:0 15px;
+  padding:5px;
   ul{
     li{
-      padding: 4px 0;
+      padding: 3px 12px;
       font-size: 14px;
       color: #161616;
+      cursor: pointer;
+    }
+    li:hover{
+      background-color:#79bbff ;
+      border-radius:4px ;
     }
   }
 }

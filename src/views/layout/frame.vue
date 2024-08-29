@@ -36,13 +36,18 @@ const changeAsideWidth = (width:number) => {
 //监听全部按钮事件
 const test = (e:any) => {
    if(e.button == 2) {
-     if(e.target.className == 'activeLi' || e.target.className == 'title-container'){
+     if(e.target.className == 'activeLi' || e.target.className == 'title-container' || e.target.className == 'tabsModal'){
       //点击tabs菜单的操作
      }else{
       isShowModal.value = false
      }
    }else{
-     isShowModal.value = false
+     if(e.target.className == 'tabsModal' || e.target.className == 'tabsEvent'){
+      
+     }else{
+      isShowModal.value = false
+     }
+   
    }
 
 }
@@ -76,12 +81,6 @@ const test = (e:any) => {
     }
   
         
-}
-.tabsModal{
-  width: 100px;
-  height: 200px;
-  background-color: aqua;
-  position: fixed;
 }
  
 </style>
