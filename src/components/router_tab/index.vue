@@ -1,11 +1,7 @@
 <template>
   <div class="router-tab">
-    
-      <el-icon v-if="isShowBtns" :size="25" color="#73767a" @click="clickScroll(-200)"><CaretLeft /></el-icon>
-      <!-- <el-icon :size="25" @click="clickScroll(200)"><CaretRight /></el-icon> -->
-     
+    <div class="home" :class="{activeLi:activePath == '/home',onlyHome:routeTabs.length == 0}"  @click="clikHome"><el-icon><HomeFilled /></el-icon>首页</div>
      <div class="tabs" ref="outdivRef">
-        <div class="home" :class="{activeLi:activePath == '/home',onlyHome:routeTabs.length == 0}"  @click="clikHome"><el-icon><HomeFilled /></el-icon>首页</div>
         <ul ref="el">
           <li  v-for="(item ,index) in routeTabs" :key="item.path"  :class="{activeLi:item.path == activePath}" :id="item.name" @contextmenu.prevent="onRightClick">
             <div class="tabTitle" :class="{active:item.path == activePath}" @click="clikRouterRab(item ,index)">
@@ -15,8 +11,11 @@
           </li>
         </ul>
      </div>
-       <!-- <el-icon :size="25" @click="clickScroll(-200)"><CaretLeft /></el-icon> -->
-      <el-icon v-if="isShowBtns" :size="25" color="#73767a"  @click="clickScroll(200)"><CaretRight /></el-icon>
+    <div class="lricons" >
+      <el-icon v-if="isShowBtns" :size="25" color="#73767a" @click="clickScroll(-200)"><CaretLeft /></el-icon>
+      <el-icon v-if="isShowBtns" style="margin-left: -10px;" :size="25" color="#73767a"  @click="clickScroll(200)"><CaretRight /></el-icon>
+    </div>
+    
   </div>
   <div class="tabsModal" ref="modalRef" v-show="isShowModal" :style="{top:topWidth+'px',left:leftWidth +'px'}">
      <ul>
@@ -47,8 +46,6 @@ let {isShowModal,leftWidth,topWidth,clickIndexL} = storeToRefs(is_tabs_modal)
 onMounted(() => {
   isShowModal.value = false
 })
-
-console.log('3333333333339999',routeTabs)
 
 const modalRef = ref(null)
 const onRightClick =(e:any) => {
@@ -187,10 +184,12 @@ useDraggable(el, routeTabs, {
   animation: 150,
   ghostClass: 'ghost',
   onStart() {
-    console.log('start')
+    // console.log('start')
   },
   onUpdate() {
-    console.log('update')
+    let index = routeTabs.value.findIndex((item:any) => item.path === activePath.value);
+    activeIndex.value = index
+
   }
 })
 
@@ -215,51 +214,51 @@ useDraggable(el, routeTabs, {
     position: absolute;
     display: flex;
     align-items: center;
+    .home{
+        height: 35px;
+        width: 60px;
+        box-sizing: border-box;
+        border:1px solid #bfbfbf;
+        padding:0 8px;
+        display: flex;
+        cursor: pointer;
+        align-items: center;
+        font-size: 14px;
+        border-radius:4px 0 0 0 ;
+    }
+    .home:hover{
+      color:@router_tab_hover_color;
+    }
+    .activeLi{
+      color:@router_tab_active_color;
+    }
+    .onlyHome{
+      border-radius:4px 4px 0 0 !important;
+    }
     .tabs{
       height: 100%;
-      width: 100%;
+      width:calc(100% - 105px) ;
       overflow-x: auto;
       overflow-y: hidden;
-      display: flex;
-      align-items: center;
-      .home{
-          height: 35px;
-          border-top: 1px solid #bfbfbf;
-          border-left: 1px solid #bfbfbf;
-          border-bottom: 1px solid #bfbfbf;
-          padding:0 8px;
-          display: flex;
-          cursor: pointer;
-          align-items: center;
-          font-size: 14px;
-          border-radius:4px 0 0 0 ;
-      }
-      .home:hover{
-        color:@router_tab_hover_color;
-      }
-      .activeLi{
-        color:@router_tab_active_color;
-      }
-      .onlyHome{
-        border-radius:4px 4px 0 0 !important;
-      }
       ul{
         height: 100%;
         display: flex;
+        box-sizing: border-box;
         align-items: center;
         transition: all 0.2s ease;
         li{
           flex-shrink: 0;
           height: 35px;
-          border-top: 1px solid #bfbfbf;
-          border-left: 1px solid #bfbfbf;
-          border-bottom: 1px solid #bfbfbf;
-          padding:0 8px;
+          box-sizing: border-box;
+          border:1px solid #bfbfbf;
+          padding:0 6px;
           position: relative;
           display: flex;
           align-items: center;
           justify-content: space-around;
           cursor: pointer;
+          user-select: none; /* 禁止文本选择 */
+          margin-left:2px ;
           .tabTitle{
             display: flex;
             padding:0 6px;
@@ -269,14 +268,14 @@ useDraggable(el, routeTabs, {
               max-width: 100px;
               white-space: nowrap;
               overflow: hidden;
-              font-size: 15px;
+              font-size: 14px;
               text-overflow: ellipsis;
               transform: translateX(0px);
               transition: all 0.1s ease-in-out;
             }
             .el-icon{
               width:0px;
-              height: 12px;
+              height: 13px;
               border-radius: 50%;
               transform: translateX(0px);
               transition: all 0.1s ease-in-out;
@@ -312,11 +311,8 @@ useDraggable(el, routeTabs, {
           }
         
         }
-      
         li:last-child{
-          border-right: 1px solid #bfbfbf;
           border-radius:0 4px 0 0 ;
-          margin-right: 10px;
         }
         
         li:hover{
@@ -343,9 +339,17 @@ useDraggable(el, routeTabs, {
       
       }
     }
-    .el-icon{
-      cursor: pointer;
+    .lricons{
+      width: 45px;
+      height: 35px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      .el-icon{
+        cursor: pointer;
+      }
     }
+   
     ::-webkit-scrollbar {
       height: 0px;
       width: 0px;
@@ -370,6 +374,10 @@ useDraggable(el, routeTabs, {
       border-radius:4px ;
     }
   }
+}
+.ghost{
+  background-color: #79bbff;
+  cursor: move;
 }
 
 </style>

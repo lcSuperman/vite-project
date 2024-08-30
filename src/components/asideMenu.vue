@@ -118,7 +118,7 @@ const menuList = reactive([
     title:'菜单三',
     path:'/three',
     name:'three',
-    icon:'coin',
+    icon:'tickets',
     meta: {
        
     },
@@ -127,7 +127,7 @@ const menuList = reactive([
     title:'菜单四',
     path:'/four',
     name:'four',
-    icon:'coin',
+    icon:'dataLine',
     meta: {
       
     },
@@ -136,7 +136,7 @@ const menuList = reactive([
     title:'菜单五',
     path:'/five',
     name:'five',
-    icon:'coin',
+    icon:'odometer',
     meta: {
        
     },
@@ -195,7 +195,7 @@ const menuList = reactive([
     title:'菜单六',
     path:'/six',
     name:'six',
-    icon:'coin',
+    icon:'mapLocation',
     meta: {
        
     },
