@@ -2,7 +2,7 @@ const two = () => import('@/views/mtwo/index.vue')
 
 export default [
     {
-        path:'two',
+        path:'',
         name:'two',
         component:two,
         meta: {

@@ -16,7 +16,6 @@ let {isShowModal} = storeToRefs(is_tabs_modal)
 import { useRoute } from 'vue-router';
 
 const route = useRoute()
-console.log('33333333333',route)
 const isRouterAlive = ref(true)
 
 const reload = () => {

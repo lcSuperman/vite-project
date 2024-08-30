@@ -203,7 +203,7 @@ useDraggable(el, routeTabs, {
 <style lang="less" scoped>
  @import "@/assets/less/index.less" ;
 .router-tab{
-    height: 40px;
+    height: 35px;
     box-sizing: border-box;
     padding: 0 10px;
     width: 100%;
@@ -215,7 +215,7 @@ useDraggable(el, routeTabs, {
     display: flex;
     align-items: center;
     .home{
-        height: 35px;
+        height: 30px;
         width: 60px;
         box-sizing: border-box;
         border:1px solid #bfbfbf;
@@ -248,7 +248,7 @@ useDraggable(el, routeTabs, {
         transition: all 0.2s ease;
         li{
           flex-shrink: 0;
-          height: 35px;
+          height: 30px;
           box-sizing: border-box;
           border:1px solid #bfbfbf;
           padding:0 6px;
@@ -314,7 +314,6 @@ useDraggable(el, routeTabs, {
         li:last-child{
           border-radius:0 4px 0 0 ;
         }
-        
         li:hover{
           color:@router_tab_hover_color;
           .tabTitle{
@@ -341,7 +340,7 @@ useDraggable(el, routeTabs, {
     }
     .lricons{
       width: 45px;
-      height: 35px;
+      height: 30px;
       box-sizing: border-box;
       display: flex;
       align-items: center;

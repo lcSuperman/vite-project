@@ -2,11 +2,11 @@ const three = () => import('@/views/mthree/index.vue')
 
 export default [
     {
-        path:'three',
+        path:'',
         name:'three',
         component:three,
         meta: {
-            title: '子菜单三',
+            title: '菜单三',
             keepAlive:false,
         }
     }

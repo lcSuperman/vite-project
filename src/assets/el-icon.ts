@@ -1,4 +1,4 @@
-import {Coin,Expand,Fold,DataLine,Document,Setting,PieChart,Tickets,DataLine,Odometer,MapLocation} from '@element-plus/icons-vue'
+import {Coin,Expand,Fold,DataLine,Document,Setting,PieChart,Tickets,Odometer,MapLocation} from '@element-plus/icons-vue'
  
 export default  {
   "coin": Coin,
@@ -9,7 +9,6 @@ export default  {
   "setting":Setting,
   "pieChart":PieChart,
   "tickets":Tickets,
-  "dataLine":DataLine,
   "odometer":Odometer,
   "mapLocation":MapLocation,
 }

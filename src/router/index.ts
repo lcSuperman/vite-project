@@ -36,19 +36,22 @@ const routes = [
       path:'/one',
       name:'one',
       component:Frame,
+      meta:{
+          title: '菜单一'
+      },
       children:[
          ...one
       ]
    },
    {
-      path:'/',
+      path:'/two',
       component:Frame,
       children:[
          ...two
       ]
    },
    {
-      path:'/',
+      path:'/three',
       component:Frame,
       children:[
          ...three
@@ -84,12 +87,14 @@ const router = createRouter({
 
 //路由守卫
 router.beforeEach((to, from, next) => {
-  const loginInfo = JSON.parse(sessionStorage.getItem('userInfo')) 
+   console.log('222222',to)
+   const loginInfo = JSON.parse(sessionStorage.getItem('userInfo')) 
    if(to.name == 'login' || (loginInfo &&  loginInfo.userName == 'lulingfeng' && loginInfo.passWord == 'QAZwsx123')){
       next()
    }else{
        next({ name: 'login' })
    }
+   
  })
 
 export default router
