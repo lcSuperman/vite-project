@@ -1,6 +1,6 @@
 <template>
     <div class="common-layout">
-        <el-container @mousedown="test">
+        <el-container>
           <el-aside :style="{width:asideWidth+'px'}">
             <AsideMenueVue :changeWidth="changeAsideWidth" />
           </el-aside>
@@ -33,24 +33,7 @@ const changeAsideWidth = (width:number) => {
   asideWidth.value = width
 }
 
-//监听全部按钮事件
-const test = (e:any) => {
-   if(e.button == 2) {
-     if(e.target.className == 'activeLi' || e.target.className == 'title-container' || e.target.className == 'tabsModal'){
-      //点击tabs菜单的操作
-     }else{
-      isShowModal.value = false
-     }
-   }else{
-     if(e.target.className == 'tabsModal' || e.target.className == 'tabsEvent'){
-      
-     }else{
-      isShowModal.value = false
-     }
-   
-   }
 
-}
 
   
 </script>

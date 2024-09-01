@@ -19,17 +19,29 @@
   </div>
   <div class="tabsModal" ref="modalRef" v-show="isShowModal" :style="{top:topWidth+'px',left:leftWidth +'px'}">
      <ul>
-      <li class="tabsEvent" @click="refresh" v-if="activeIndex == clickIndexL">刷新</li>
-      <li class="tabsEvent" @click="closeTab">关闭</li>
-      <li class="tabsEvent" @click="closeOtherTabs">关闭其他</li>
-      <li class="tabsEvent" @click="closeAllTabs">全部关闭</li>
+      <li class="tabsEvent refresh" @click="refresh" v-if="activeIndex == clickIndexL">
+        <el-icon><Refresh /></el-icon>
+        <span>刷新</span>
+        </li>
+      <li class="tabsEvent singleclose" @click="closeTab">
+        <el-icon><Close /></el-icon>
+        <span>关闭标签</span>
+        </li>
+      <li class="tabsEvent" @click="closeOtherTabs">
+        <el-icon><FolderDelete /></el-icon>
+        <span>关闭其他标签</span>
+        </li>
+      <li class="tabsEvent" @click="closeAllTabs">
+        <el-icon><FolderDelete /></el-icon>
+         <span>关闭所有标签</span>
+        </li>
      </ul>
   </div>
 </template>
 
 <script lang="ts" setup>
 import {ref,reactive,watch,nextTick,onMounted,inject} from 'vue'
-import {Close,CaretLeft,CaretRight,HomeFilled,ArrowDownBold} from '@element-plus/icons-vue'
+import {Close,CaretLeft,CaretRight,HomeFilled,Refresh,FolderDelete} from '@element-plus/icons-vue'
 import { useRouter } from 'vue-router';
 import {useRouteTabsStore,useTabsModal} from '@/store/index.ts'
 import { storeToRefs } from 'pinia'
@@ -359,17 +371,27 @@ useDraggable(el, routeTabs, {
   position: fixed;
   border-radius: 5px;
   background-color: #f8f8f8;
-  box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, .2);
+  box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, .1);
   padding:5px;
   ul{
     li{
-      padding: 3px 12px;
+      padding: 5px 20px 5px 12px;
       font-size: 14px;
-      color: #161616;
+      color: #73767a;
       cursor: pointer;
+      .el-icon{
+        padding-right:10px;
+      }
+    }
+    .refresh{
+      padding-bottom: 10px;
+      border-bottom: 1px solid #dcdcdc;
+    }
+    .singleclose{
+      padding-top: 10px;
     }
     li:hover{
-      background-color:#79bbff ;
+      background-color:#eaeaea ;
       border-radius:4px ;
     }
   }
