@@ -1,6 +1,6 @@
 <template>
     <div class="common-layout">
-        <el-container>
+        <el-container >
           <el-aside :style="{width:asideWidth+'px'}">
             <AsideMenueVue :changeWidth="changeAsideWidth" />
           </el-aside>
@@ -21,19 +21,12 @@ import { ref} from 'vue'
 import AsideMenueVue from "@/components/asideMenu.vue";
 import Header from '@/components/header.vue';
 import Router_tab from '@/components/router_tab/index.vue';
-import {useTabsModal} from '@/store/index.ts'
-import { storeToRefs } from 'pinia'
-
-const is_tabs_modal = useTabsModal()
-let {isShowModal} = storeToRefs(is_tabs_modal)
 
 //左菜单逻辑
 const asideWidth = ref(160)
 const changeAsideWidth = (width:number) => {
   asideWidth.value = width
 }
-
-
 
   
 </script>

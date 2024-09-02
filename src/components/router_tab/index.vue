@@ -17,26 +17,28 @@
     </div>
     
   </div>
-  <div class="tabsModal" ref="modalRef" v-show="isShowModal" :style="{top:topWidth+'px',left:leftWidth +'px'}">
-     <ul>
-      <li class="tabsEvent refresh" @click="refresh" v-if="activeIndex == clickIndexL">
-        <el-icon><Refresh /></el-icon>
-        <span>刷新</span>
-        </li>
-      <li class="tabsEvent singleclose" @click="closeTab">
-        <el-icon><Close /></el-icon>
-        <span>关闭标签</span>
-        </li>
-      <li class="tabsEvent" @click="closeOtherTabs">
-        <el-icon><FolderDelete /></el-icon>
-        <span>关闭其他标签</span>
-        </li>
-      <li class="tabsEvent" @click="closeAllTabs">
-        <el-icon><FolderDelete /></el-icon>
-         <span>关闭所有标签</span>
-        </li>
-     </ul>
-  </div>
+  <Transition name="slide-down">
+    <div v-clickOutside="clicktabModal" class="tabsModal" ref="modalRef" v-show="isShowModal" :style="{top:topWidth+'px',left:leftWidth +'px'}">
+      <ul>
+        <li class="refresh" @click="refresh" v-if="activeIndex == clickIndexL">
+          <el-icon><Refresh /></el-icon>
+          <span>刷新</span>
+          </li>
+        <li class="singleclose" @click="closeTab">
+          <el-icon><Close /></el-icon>
+          <span>关闭标签</span>
+          </li>
+        <li  @click="closeOtherTabs">
+          <el-icon><FolderDelete /></el-icon>
+          <span>关闭其他标签</span>
+          </li>
+        <li @click="closeAllTabs">
+          <el-icon><FolderDelete /></el-icon>
+          <span>关闭所有标签</span>
+          </li>
+      </ul>
+    </div>
+ </Transition>
 </template>
 
 <script lang="ts" setup>
@@ -59,7 +61,10 @@ onMounted(() => {
   isShowModal.value = false
 })
 
+
+
 const modalRef = ref(null)
+
 const onRightClick =(e:any) => {
   isShowModal.value = false
   // 获取浏览器窗口的可视区域宽度（包括滚动条等）
@@ -188,7 +193,6 @@ const closeOtherTabs = () => {
 
 const refresh = () => {
   return reloadFun()
-  
 }
 
 
@@ -206,7 +210,9 @@ useDraggable(el, routeTabs, {
 })
 
 
-
+const clicktabModal = () => {
+  isShowModal.value = false
+}
  
 
 
@@ -399,6 +405,16 @@ useDraggable(el, routeTabs, {
 .ghost{
   background-color: #79bbff;
   cursor: move;
+}
+
+.slide-down-enter-active, .slide-down-leave-active {
+  transition: transform 0.2s, opacity 0.2s,height 0.2s;
+}
+.slide-down-enter-from, .slide-down-leave-to {
+  transform: translateY(-5px);
+  opacity: 0;
+  height: 0;
+
 }
 
 </style>
