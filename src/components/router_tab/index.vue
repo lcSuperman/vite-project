@@ -82,9 +82,9 @@ const onRightClick =(e:any) => {
     if(clientWidth - e.clientX < modalWidth){
       leftWidth.value = e.clientX - modalWidth
     }else{
-      leftWidth.value = e.clientX
+      leftWidth.value = e.clientX + 2
     }
-    topWidth.value = e.clientY
+    topWidth.value = e.clientY + 2
   });
 
 }

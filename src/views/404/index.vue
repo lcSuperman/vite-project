@@ -43,8 +43,8 @@ const goHome = () => {
     align-items: center;
     margin-bottom: 2%;
     img{
-        height:70%;
-        width:90%;
+        height:350px;
+        width:700px;
     }
     .title{
         display: flex;
