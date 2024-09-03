@@ -33,7 +33,10 @@
 
 import {reactive,ref} from 'vue'
 import { useRouter } from 'vue-router';
+import {useUserInfo } from '@/store/index.ts'
 
+
+const user_info = useUserInfo()
 // 获取router实例
 const router = useRouter();
 //定义的名字要和模版中ref的名称一致
@@ -91,7 +94,10 @@ const loginHome = () =>{
     ruleFormRef.value.validate((valid:any) => {
         if(valid){
             loginLoading.value = true
-            sessionStorage.setItem('userInfo',JSON.stringify(loginForm))
+            let login_info = loginForm
+            login_info.token = ''
+            user_info.loginInfo = login_info
+            sessionStorage.setItem('userInfo',JSON.stringify(login_info))
             setTimeout(() => {
                 router.push({path:'/home'})
                 loginLoading.value = false
@@ -127,8 +133,8 @@ const loginHome = () =>{
         filter: blur(6px);
     }
     .content{
-        width: 35%;
-	    height: 55%;
+        width: 450px;
+	    height: 350px;
         z-index: 5;
         background-color:rgba(255,255,255,0.4);
         border-radius: 10px;
@@ -139,7 +145,7 @@ const loginHome = () =>{
         align-items: center;
         box-sizing: border-box;
         img{
-            width: 25%;
+            width: 30%;
         }
     }
   }

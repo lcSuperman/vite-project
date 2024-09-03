@@ -1,5 +1,7 @@
 import { defineStore } from 'pinia'
 
+
+// tab标签的展示，激活状态
 export const useRouteTabsStore = defineStore('route_teabs', {
     // 其他配置...
     state:() => {
@@ -64,6 +66,7 @@ export const useRouteTabsStore = defineStore('route_teabs', {
     }
  })
 
+ //tab标签右键菜单定位展示
 export const useTabsModal = defineStore('is_tabs_modal',{
     state:()=>{
         return {
@@ -71,6 +74,18 @@ export const useTabsModal = defineStore('is_tabs_modal',{
             leftWidth:0,
             topWidth:0,
             clickIndexL:0,
+        }
+    },
+    persist: {
+        enabled: true,
+    }
+})
+
+//登录用户的信息
+export const  useUserInfo = defineStore('user_info',{
+    state:() => {
+        return {
+           loginInfo:{}
         }
     },
     persist: {

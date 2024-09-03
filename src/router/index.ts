@@ -1,6 +1,4 @@
 import { createWebHashHistory, createRouter } from 'vue-router'
-// RouterTab 内置路由
-import { RouterTabRoutes } from 'vue-router-tab'
 
 // 引入布局框架组件
 const Frame = () => import('@/views/layout/frame.vue')
@@ -87,7 +85,6 @@ const router = createRouter({
 
 //路由守卫
 router.beforeEach((to, from, next) => {
-   console.log('222222',to)
    const loginInfo = JSON.parse(sessionStorage.getItem('userInfo')) 
    if(to.name == 'login' || (loginInfo &&  loginInfo.userName == 'lulingfeng' && loginInfo.passWord == 'QAZwsx123')){
       next()
