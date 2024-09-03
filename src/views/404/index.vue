@@ -1,5 +1,5 @@
 <template>
-   <ul class="error">
+   <ul class="main_container error">
     <li >
         <img src="../../assets/404.png" alt="">
         <div class="title">
@@ -43,8 +43,7 @@ const goHome = () => {
     align-items: center;
     margin-bottom: 2%;
     img{
-        height:350px;
-        width:700px;
+        width:70%;
     }
     .title{
         display: flex;

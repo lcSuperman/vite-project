@@ -36,6 +36,14 @@ h2, p {
   margin: 0;
 }
 
+.main_container{
+  margin-top:35px;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  background-color:#fff;
+}
+
 
 ::-webkit-scrollbar {
   height: 5px;

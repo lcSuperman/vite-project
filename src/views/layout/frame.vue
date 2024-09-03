@@ -51,7 +51,6 @@ const changeAsideWidth = (width:number) => {
             background-color: rgb(233, 233, 233);
             --el-main-padding:10px;
             position: relative;
-            padding-top: 50px;
          }
       }
     }
