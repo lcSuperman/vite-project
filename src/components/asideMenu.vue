@@ -134,6 +134,7 @@ const expandMenu = () => {
 .menu-container{
   overflow: auto;
   height:calc(100% - 100px);
+  margin-right: 1px;
   overflow-x: hidden; /*菜单展开时会闪一下滚动条， 隐藏横向滚动条 */
   /deep/.el-menu{
     background-color:rgba(0, 0, 0, 0);

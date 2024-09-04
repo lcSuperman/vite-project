@@ -1,8 +1,9 @@
 <template>
     
-    <div>
+    <div class="aa">
         首页
     </div>
+   
   
   
 
@@ -15,5 +16,10 @@
  
  <style lang="less" scoped>
  @import "@/assets/less/index.less" ;
+ .aa{
+    height: 100%;
+    width: 100%;
+    background-color: aqua;
+ }
 
  </style>

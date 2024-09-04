@@ -37,15 +37,15 @@ h2, p {
 }
 
 .main_container{
-  height: 100%;
+  height:calc(100% - 40px);
   box-sizing: border-box;
-  padding-top: 45px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   overflow-y: auto;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 10px;
 }
 .content{
   height: 100%;
@@ -57,9 +57,9 @@ h2, p {
   overflow-y: hidden;
 }
 ::-webkit-scrollbar-thumb {
-    border-radius: 5px;
+    border-radius: 6px;
     -webkit-box-shadow: inset 0 0 5px rgba(173, 173, 173, 0.2);
-    background:#b1b1b1;
+    background:#bdbdbd;
 }
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: 0;

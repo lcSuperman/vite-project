@@ -221,19 +221,16 @@ const clicktabModal = () => {
 <style lang="less" scoped>
  @import "@/assets/less/index.less" ;
 .router-tab{
-    height: 35px;
+    height: 40px;
     box-sizing: border-box;
     padding: 0 10px;
     width: 100%;
     background-color: rgb(255, 255, 255);
     box-shadow: 0px 1px 4px 3px rgba(0, 0, 0, .2);
-    top:0;
-    left:0;
-    position: absolute;
     display: flex;
     align-items: center;
     .home{
-        height: 30px;
+        height: 35px;
         width: 60px;
         box-sizing: border-box;
         border:1px solid #bfbfbf;
@@ -266,7 +263,7 @@ const clicktabModal = () => {
         transition: all 0.2s ease;
         li{
           flex-shrink: 0;
-          height: 30px;
+          height: 35px;
           box-sizing: border-box;
           border:1px solid #bfbfbf;
           padding:0 6px;
