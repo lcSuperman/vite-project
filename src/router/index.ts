@@ -1,4 +1,5 @@
 import { createWebHashHistory, createRouter } from 'vue-router'
+import {useRouteTabsStore} from '@/store/index.ts'
 
 // 引入布局框架组件
 const Frame = () => import('@/views/layout/frame.vue')
@@ -68,6 +69,9 @@ const routes = [
       {
          path: '404',
          component:() => import('@/views/404/index.vue'),
+         meta:{
+            title:'404'
+         }
       }
    ]
   
@@ -85,8 +89,18 @@ const router = createRouter({
 
 //路由守卫
 router.beforeEach((to, from, next) => {
+   const route_teabs = useRouteTabsStore() 
+    const obj ={
+         path:to.path,
+         title:to.meta.title,
+         meta:to.meta
+     }
+
    const loginInfo = JSON.parse(sessionStorage.getItem('userInfo')) 
    if(to.name == 'login' || (loginInfo &&  loginInfo.userName == 'lulingfeng' && loginInfo.passWord == 'QAZwsx123')){
+      if(to.name !== 'login' && to.name !== 'home'){
+         route_teabs.addTabs(obj)
+      }
       next()
    }else{
        next({ name: 'login' })

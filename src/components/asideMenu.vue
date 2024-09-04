@@ -94,7 +94,7 @@ const handleClose = (key: string, keyPath: string[]) => {
 }
 
 const clickMenuItem = (item:any) => {
-  route_teabs.addTabs(item)
+  
 }
 
 const foldMenu = () => {
