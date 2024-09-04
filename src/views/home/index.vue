@@ -1,5 +1,12 @@
 <template>
-    <div class="main_container">首页</div>
+    
+    <div>
+        首页
+    </div>
+  
+  
+
+   
  </template>
  
  <script  setup lang="ts">
@@ -8,7 +15,5 @@
  
  <style lang="less" scoped>
  @import "@/assets/less/index.less" ;
- 
 
- 
  </style>

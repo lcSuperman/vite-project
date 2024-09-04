@@ -10,7 +10,11 @@
             </el-header>
             <el-main>
               <Router_tab></Router_tab>
-              <router-view></router-view>
+              <div class="main_container">
+                  <div class="content">
+                       <router-view></router-view>
+                  </div>
+                </div>
             </el-main>
           </el-container>
         </el-container>
@@ -49,7 +53,7 @@ const changeAsideWidth = (width:number) => {
          }
          .el-main{
             background-color: rgb(233, 233, 233);
-            --el-main-padding:10px;
+            --el-main-padding:0px;
             position: relative;
          }
       }

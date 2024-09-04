@@ -1,5 +1,5 @@
 <template>
-   <ul class="main_container error">
+   <ul class="error">
     <li >
         <img src="../../assets/404.png" alt="">
         <div class="title">
