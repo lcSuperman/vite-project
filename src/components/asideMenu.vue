@@ -26,21 +26,21 @@
             <el-icon v-if="item.icon">
               <component :is="iconMapping[item.icon]" />
             </el-icon>
-            <span>{{ item.title }}</span>
+            <span>{{ item.meta.title }}</span>
           </template>
           <template v-for="(element ,key) in item.children" :key="key">
             <el-sub-menu :index="element.path" v-if="element.children && element.children.length !== 0">
-              <template #title><span>{{ element.title }}</span></template>
-              <el-menu-item :index="ele.path" v-for="(ele ,i) in element.children" :key="i" @click="clickMenuItem(ele)">{{ ele.title}}</el-menu-item>
+              <template #title><span>{{ element.meta.title }}</span></template>
+              <el-menu-item :index="ele.path" v-for="(ele ,i) in element.children" :key="i" @click="clickMenuItem(ele)">{{ ele.meta.title}}</el-menu-item>
             </el-sub-menu>
-            <el-menu-item :index="element.path" v-else @click="clickMenuItem(element)">{{ element.title}}</el-menu-item>
+            <el-menu-item :index="element.path" v-else @click="clickMenuItem(element)">{{ element.meta.title}}</el-menu-item>
           </template>
         </el-sub-menu>
         <el-menu-item :index="item.path" v-else @click="clickMenuItem(item)">
           <el-icon v-if="item.icon">
               <component :is="iconMapping[item.icon]" />
           </el-icon>
-          <template #title>{{ item.title }}</template>
+          <template #title>{{ item.meta.title }}</template>
         </el-menu-item>
       </template>
     </el-menu>

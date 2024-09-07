@@ -5,7 +5,7 @@
         <ul ref="el">
           <li  v-for="(item ,index) in routeTabs" :key="item.path"  :class="{activeLi:item.path == activePath}" :id="item.name" @contextmenu.prevent="onRightClick">
             <div class="tabTitle" :class="{active:item.path == activePath}" @click="clikRouterRab(item ,index)">
-              <div class="title-container">{{item.title}}</div>
+              <div class="title-container">{{item.meta.title}}</div>
               <el-icon  @click.stop="clickRemoveTab(index)"><Close /></el-icon>
             </div>
           </li>
@@ -221,7 +221,7 @@ const clicktabModal = () => {
 <style lang="less" scoped>
  @import "@/assets/less/index.less" ;
 .router-tab{
-    height: 40px;
+    height: 35px;
     box-sizing: border-box;
     padding: 0 10px;
     width: 100%;
@@ -230,7 +230,7 @@ const clicktabModal = () => {
     display: flex;
     align-items: center;
     .home{
-        height: 35px;
+        height: 30px;
         width: 60px;
         box-sizing: border-box;
         border:1px solid #bfbfbf;
@@ -263,7 +263,7 @@ const clicktabModal = () => {
         transition: all 0.2s ease;
         li{
           flex-shrink: 0;
-          height: 35px;
+          height: 30px;
           box-sizing: border-box;
           border:1px solid #bfbfbf;
           padding:0 6px;

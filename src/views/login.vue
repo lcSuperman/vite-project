@@ -95,9 +95,8 @@ const loginHome = () =>{
         if(valid){
             loginLoading.value = true
             let login_info = loginForm
-            login_info.token = ''
+            login_info.token = login_info.userName + login_info.passWord
             user_info.loginInfo = login_info
-            sessionStorage.setItem('userInfo',JSON.stringify(login_info))
             setTimeout(() => {
                 router.push({path:'/home'})
                 loginLoading.value = false

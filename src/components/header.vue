@@ -40,8 +40,9 @@
  import {ref,onMounted} from 'vue'
  import { useRouter } from 'vue-router';
  import {SwitchButton,Setting,UserFilled,ChatLineSquare,Warning} from '@element-plus/icons-vue'
+ import {useUserInfo} from '@/store/index.ts'
  
- 
+ const user_info = useUserInfo()
  // 获取router实例
  const router = useRouter();
  const userName = ref('')
@@ -53,7 +54,7 @@
 
  const loginout = () => {
     router.push({path:'/login'})
-    sessionStorage.removeItem('userInfo')
+    user_info.$reset()
  }
  </script>
  

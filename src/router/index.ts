@@ -1,5 +1,5 @@
 import { createWebHashHistory, createRouter } from 'vue-router'
-import {useRouteTabsStore} from '@/store/index.ts'
+import {useRouteTabsStore,useUserInfo} from '@/store/index.ts'
 
 // 引入布局框架组件
 const Frame = () => import('@/views/layout/frame.vue')
@@ -17,11 +17,11 @@ const routes = [
    {path:'/',redirect:'/login'},
    {path:'/login',name:'login',component:Login},
    {
-      path:'/home',
+      path:'/',
       component:Frame,
       children:[
          {
-            path:'',
+            path:'home',
             name:'home',
             component:Home,
             meta: {
@@ -89,15 +89,13 @@ const router = createRouter({
 
 //路由守卫
 router.beforeEach((to, from, next) => {
-   const route_teabs = useRouteTabsStore() 
+   const route_teabs = useRouteTabsStore()
+   const user_info = useUserInfo()
     const obj ={
          path:to.path,
-         title:to.meta.title,
          meta:to.meta
-     }
-
-   const loginInfo = JSON.parse(sessionStorage.getItem('userInfo')) 
-   if(to.name == 'login' || (loginInfo &&  loginInfo.userName == 'lulingfeng' && loginInfo.passWord == 'QAZwsx123')){
+   }
+   if(to.name == 'login' || user_info.loginInfo.token){
       if(to.name !== 'login' && to.name !== 'home'){
          route_teabs.addTabs(obj)
       }
