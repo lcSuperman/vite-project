@@ -12,7 +12,9 @@
               <Router_tab></Router_tab>
               <div class="main_container">
                   <div class="content">
+                    <el-watermark  style="height:100%"  :font="font" :content="content">
                        <router-view></router-view>
+                    </el-watermark>
                   </div>
                 </div>
             </el-main>
@@ -21,16 +23,29 @@
     </div>
 </template>
 <script setup lang="ts">
-import { ref} from 'vue'
+import { ref,reactive,onMounted} from 'vue'
 import AsideMenueVue from "@/components/asideMenu.vue";
 import Header from '@/components/header.vue';
 import Router_tab from '@/components/router_tab/index.vue';
+import {useUserInfo} from '@/store/index.ts'
 
 //左菜单逻辑
 const asideWidth = ref(160)
 const changeAsideWidth = (width:number) => {
   asideWidth.value = width
 }
+
+//水印
+const user_info = useUserInfo()
+const content= ref([])
+const font = reactive({
+   color: 'rgba(0, 0, 0, .15)',
+ })
+
+onMounted(() => {
+  const str = user_info.loginInfo.userName
+  content.value.push(str)
+})
 
   
 </script>
