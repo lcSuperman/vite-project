@@ -246,6 +246,7 @@ const clicktabModal = () => {
     }
     .activeLi{
       color:@router_tab_active_color;
+      border-color:@router_tab_active_color;
     }
     .onlyHome{
       border-radius:4px 4px 0 0 !important;
@@ -258,6 +259,7 @@ const clicktabModal = () => {
       ul{
         height: 100%;
         display: flex;
+        margin-left:0.5px;
         box-sizing: border-box;
         align-items: center;
         transition: all 0.2s ease;
@@ -306,6 +308,7 @@ const clicktabModal = () => {
           .active{
             color:@router_tab_active_color;
             padding:0px;
+           
             transition: all .01s ease-in-out;
             .title-container{
               transform: translateX(-2px);
@@ -348,6 +351,7 @@ const clicktabModal = () => {
         } 
         .activeLi{
           color:@router_tab_active_color;
+          border-color:@router_tab_active_color;
         }
     
       

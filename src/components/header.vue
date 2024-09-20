@@ -48,7 +48,7 @@
  const userName = ref('')
 
  onMounted(() => {
-    const user = JSON.parse(sessionStorage.getItem('userInfo')).userName
+    const user = user_info.loginInfo.userName
     userName.value = user.substring(0,2)
  })
 
